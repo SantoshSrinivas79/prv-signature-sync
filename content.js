@@ -89,9 +89,15 @@ const removeSignatureObserver = (messageBox) => {
 };
 
 const checkFocusedElement = async () => {
+  console.log("checking focussed element");
   const activeElement = document.activeElement,
     isConnectNoteBox = activeElement.matches('textarea.connect-button-send-invite__custom-message'),
     isMessageBox = activeElement.matches('div.msg-form__contenteditable');
+    isCommentBox = activeElement.matches('div[aria-placeholder="Add a comment…"]');
+  
+  if (isCommentBox) {
+    console.log("is a comment box");
+  };
   if (!isConnectNoteBox && !isMessageBox) return;
   if (isMessageBox) addSignatureObserver(activeElement);
 
